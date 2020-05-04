@@ -4,7 +4,6 @@ import com.beust.klaxon.Klaxon
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.faunadb.client.FaunaClient
 import com.faunadb.client.query.Language.*
-import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Test
 
 class BlogSpec {
@@ -29,7 +28,7 @@ class BlogSpec {
         val doc  = serverClient.query(Get(Ref(Collection("post"),Value("264593116921594370"))))
                 .get()
         println(doc.at("data").toString())
-        val data = doc.at("data").to(PostJava::class.java)
+        val data = doc.at("data").to(Post::class.java)
 
         println(data?.get()?.summary)
     }

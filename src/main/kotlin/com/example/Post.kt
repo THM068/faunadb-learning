@@ -2,8 +2,11 @@ package com.example
 import com.faunadb.client.query.Expr
 import com.faunadb.client.query.Language.Obj
 import com.faunadb.client.query.Language.Value
+import com.faunadb.client.types.FaunaConstructor
+import com.faunadb.client.types.FaunaField
 
-data class Post(val title: String, val summary: String) {
+
+data class Post @FaunaConstructor constructor(@FaunaField("title") val title: String, @FaunaField("summary")val summary: String) {
 
     fun toFauna(): Expr {
         return  Obj(
